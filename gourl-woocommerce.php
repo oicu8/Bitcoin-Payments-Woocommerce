@@ -2,7 +2,7 @@
 /*
 Plugin Name: 		GoUrl WooCommerce - Bitcoin Altcoin Payment Gateway Addon. White Label Solution
 Plugin URI: 		https://gourl.io/bitcoin-payments-woocommerce.html
-Description: 		Provides a <a href="https://gourl.io">GoUrl.io</a> Bitcoin/Altcoin Payment Gateway for <a href="https://wordpress.org/plugins/woocommerce/">WooCommerce 2.1+</a>. Support product prices in USD/EUR/etc and in Bitcoin/Altcoins directly; sends the amount straight to your business Bitcoin/Altcoin wallet. Convert your USD/EUR/etc prices to cryptocoins using Google/Poloniex Exchange Rates. Direct Integration on your website, no external payment pages opens (as other payment gateways offer). Accept Bitcoin, BitcoinCash, Litecoin, Dash, Dogecoin, Speedcoin, Reddcoin, Potcoin, Feathercoin, Vertcoin, Peercoin, MonetaryUnit payments online. You will see the bitcoin/altcoin payment statistics in one common table on your website. No Chargebacks, Global, Secure. All in automatic mode.
+Description: 		Provides a <a href="https://gourl.io">GoUrl.io</a> Bitcoin/Altcoin Payment Gateway for <a href="https://wordpress.org/plugins/woocommerce/">WooCommerce 2.1+</a>. Support product prices in USD/EUR/etc and in Bitcoin/Altcoins directly; sends the amount straight to your business Bitcoin/Altcoin wallet. Convert your USD/EUR/etc prices to cryptocoins using Google/Poloniex Exchange Rates. Direct Integration on your website, no external payment pages opens (as other payment gateways offer). Accept Bitcoin, BitcoinCash, Litecoin, Neutron, Dogecoin, Speedcoin, Reddcoin, Potcoin, Feathercoin, Vertcoin, Peercoin, MonetaryUnit payments online. You will see the bitcoin/altcoin payment statistics in one common table on your website. No Chargebacks, Global, Secure. All in automatic mode.
 Version: 			1.2.4
 Author: 			GoUrl.io
 Author URI: 		https://gourl.io
@@ -21,7 +21,7 @@ if (!function_exists('gourl_wc_gateway_load') && !function_exists('gourl_wc_acti
 
 
 	DEFINE('GOURLWC', 'gourl-woocommerce');
-	DEFINE('GOURLWC_2WAY', json_encode(array("BTC", "BCH", "LTC", "DASH", "DOGE")));
+	DEFINE('GOURLWC_2WAY', json_encode(array("BTC", "BCH", "LTC", "Neutron", "DOGE")));
 
 
 	if (!defined('GOURLWC_AFFILIATE_KEY'))
@@ -153,7 +153,7 @@ if (!function_exists('gourl_wc_gateway_load') && !function_exists('gourl_wc_acti
 	            __( 'Bitcoincash', GOURLWC );
 	            __( 'Litecoin', GOURLWC );
 	            __( 'Doge', GOURLWC );
-	            __( 'DASH', GOURLWC ); // use in translation
+	            __( 'Neutron', GOURLWC ); // use in translation
 
 
 	            $arr2 = json_decode(GOURL_RATES, true);
@@ -175,7 +175,7 @@ if (!function_exists('gourl_wc_gateway_load') && !function_exists('gourl_wc_acti
 
 
 	/*
-	 *  4. You set product prices in USD/EUR/etc in the admin panel, and display those prices in Cryptocurrency (Bitcoin, LTC, BCH, DASH, DOGE)  for front-end users
+	 *  4. You set product prices in USD/EUR/etc in the admin panel, and display those prices in Cryptocurrency (Bitcoin, LTC, BCH, Neutron, DOGE)  for front-end users
 	 *  Admin user - if current_user_can('manage_options') return true
 	*/
 	function gourl_wc_currency_type( $currency = "" )
@@ -295,7 +295,7 @@ if (!function_exists('gourl_wc_gateway_load') && !function_exists('gourl_wc_acti
             }
             else
             {
-                // Get Altcoins Live Rates to BTC - DASH/BTC, LTC/BTC, BCH/BTC
+                // Get Altcoins Live Rates to BTC - Neutron/BTC, LTC/BTC, BCH/BTC
                 if (!isset($rates[$v]) || !$rates[$v]) $rates[$v] = gourl_altcoin_btc_price ($v);
 
                 $priceAlt = 0;
@@ -326,7 +326,7 @@ if (!function_exists('gourl_wc_gateway_load') && !function_exists('gourl_wc_acti
 
 	    $arr = gourl_wc_currency_type();
 
-	    // Set price in USD/EUR/GBR in the admin panel and display that price in Bitcoin/BitcoinCash/Litcoin/DASH/Dogecoin for the front-end user
+	    // Set price in USD/EUR/GBR in the admin panel and display that price in Bitcoin/BitcoinCash/Litcoin/Neutron/Dogecoin for the front-end user
         if ($arr["2way"])
         {
             $decimals = absint($decimals);
@@ -339,7 +339,7 @@ if (!function_exists('gourl_wc_gateway_load') && !function_exists('gourl_wc_acti
             elseif (function_exists('get_woocommerce_currency'))
             {
                 $currency = $arr["user"]; // user visible currency
-                if (in_array($currency, array("BTC", "BCH", "DASH")) && !in_array($decimals, array(3,4))) $decimals = 4;
+                if (in_array($currency, array("BTC", "BCH", "Neutron")) && !in_array($decimals, array(3,4))) $decimals = 4;
                 if (in_array($currency, array("LTC")) && !in_array($decimals, array(2,3)))                $decimals = 3;
                 if (in_array($currency, array("DOGE")) && !in_array($decimals, array(0)))                 $decimals = 0;
             }
@@ -400,7 +400,7 @@ if (!function_exists('gourl_wc_gateway_load') && !function_exists('gourl_wc_acti
 	        if (!$btc) $btc = gourl_bitcoin_live_price ($arr["admin"]); // 1BTC bitcoin price  in USD/EUR/AUD/RUB/GBP/etc.
 
 	        if ($arr["user"] == "BTC") $live = $btc;
-	        elseif (in_array($arr["user"], json_decode(GOURLWC_2WAY, true))) $live = $btc * gourl_altcoin_btc_price ($arr["user"]); // altcoins 1LTC/1DASH/1BCH/1DOGE  in USD/EUR/AUD/RUB/GBP/etc.
+	        elseif (in_array($arr["user"], json_decode(GOURLWC_2WAY, true))) $live = $btc * gourl_altcoin_btc_price ($arr["user"]); // altcoins 1LTC/1Neutron/1BCH/1DOGE  in USD/EUR/AUD/RUB/GBP/etc.
 
 	        if ($live > 0) $price = floatval($price) / floatval($live) * 1.01 * floatval($emultiplier);
 	        else  $price = 99999;
@@ -538,7 +538,7 @@ if (!function_exists('gourl_wc_gateway_load') && !function_exists('gourl_wc_acti
 
 	        $pamountcrypto = get_post_meta( $order_id, '_gourl_worder_pamountcrypto', true ); // 1.1 BTC
 	        $pamountusd    = get_post_meta( $order_id, '_gourl_worder_pamountusd', true );    // 4350 USD
-	        $pamountmain   = get_post_meta( $order_id, '_gourl_worder_pamountmain', true );   // 3300 GBP/EUR/DASH/BTC
+	        $pamountmain   = get_post_meta( $order_id, '_gourl_worder_pamountmain', true );   // 3300 GBP/EUR/Neutron/BTC
 
 	        $txID          = get_post_meta( $order_id, '_gourl_worder_txid', true );
 	        $txURL         = $gourl->blockexplorer_tr_url($txID, $coinName);
@@ -629,7 +629,7 @@ if (!function_exists('gourl_wc_gateway_load') && !function_exists('gourl_wc_acti
 
 		private $payments           = array();
 		private $languages          = array();
-		private $coin_names         = array('BTC' => 'bitcoin', 'BCH' => 'bitcoincash', 'LTC' => 'litecoin', 'DASH' => 'dash', 'DOGE' => 'dogecoin', 'SPD' => 'speedcoin', 'RDD' => 'reddcoin', 'POT' => 'potcoin', 'FTC' => 'feathercoin', 'VTC' => 'vertcoin', 'PPC' => 'peercoin', 'UNIT' => 'universalcurrency', 'MUE' => 'monetaryunit');
+		private $coin_names         = array('BTC' => 'bitcoin', 'BCH' => 'bitcoincash', 'LTC' => 'litecoin', 'Neutron' => 'NTRN', 'DOGE' => 'dogecoin', 'SPD' => 'speedcoin', 'RDD' => 'reddcoin', 'POT' => 'potcoin', 'FTC' => 'feathercoin', 'VTC' => 'vertcoin', 'PPC' => 'peercoin', 'UNIT' => 'universalcurrency', 'MUE' => 'monetaryunit');
 		private $statuses           = array('processing' => 'Processing Payment', 'on-hold' => 'On Hold', 'completed' => 'Completed');
 		private $cryptorices        = array();
 		private $showhidemenu       = array('show' => 'Show Menu', 'hide' => 'Hide Menu');
@@ -713,7 +713,7 @@ if (!function_exists('gourl_wc_gateway_load') && !function_exists('gourl_wc_acti
 
 			$this->method_description  .= "<b>" . __( "White Label Product. Secure payments with virtual currency. <a target='_blank' href='https://bitcoin.org/'>What is Bitcoin?</a>", GOURLWC ) . '</b><br>';
 			$this->method_description  .= sprintf(__( 'Accept %s payments online in WooCommerce.', GOURLWC ), __( ucwords(implode(", ", $this->coin_names)), GOURLWC )).'<br>';
-			if ($enabled) $this->method_description .= sprintf(__( "If you use multiple stores/sites online, please create separate <a target='_blank' href='%s'>GoUrl Payment Box</a> (with unique payment box public/private keys) for each of your stores/websites. Do not use the same GoUrl Payment Box with the same public/private keys on your different websites/stores.", GOURLWC ), "https://gourl.io/editrecord/coin_boxes/0") . '<br>'.sprintf(__( "Add additional altcoins (Litecoin/DASH/Bitcoin Cash/etc) to payment box <a href='%s'>here &#187;</a>", GOURLWC ), $this->url).'<br><br>';
+			if ($enabled) $this->method_description .= sprintf(__( "If you use multiple stores/sites online, please create separate <a target='_blank' href='%s'>GoUrl Payment Box</a> (with unique payment box public/private keys) for each of your stores/websites. Do not use the same GoUrl Payment Box with the same public/private keys on your different websites/stores.", GOURLWC ), "https://gourl.io/editrecord/coin_boxes/0") . '<br>'.sprintf(__( "Add additional altcoins (Litecoin/Neutron/Bitcoin Cash/etc) to payment box <a href='%s'>here &#187;</a>", GOURLWC ), $this->url).'<br><br>';
 			else $this->method_description .= '<br>';
 
 			$this->cryptorices = array("Original Price only");
@@ -862,7 +862,7 @@ if (!function_exists('gourl_wc_gateway_load') && !function_exists('gourl_wc_acti
                     'advanced' 		=> array(
                     'title'       	=> "<br>".__( 'Advanced options', GOURLWC ),
                     'type'        	=> 'title',
-                    'description' 	=> '<img width="45" height="35" alt="new" src="https://gourl.io/images/new.png" style="float:left;margin:3px 8px"> '.sprintf(__("Your shop can display product prices in Bitcoin/BCH/DASH/LTC/DOGE also.<br>Simple select 'Currency' - <a href='%s'>'Admin use USD/EUR/etc, users see Live Prices in Bitcoin/Altcoin'</a>", GOURLWC ), admin_url('admin.php?page=wc-settings&tab=general#woocommerce_currency'))."&#160; --> &#160; <a href='https://gourl.io/images/woocommerce/woocommerce-usd-btc.html' target='_blank'>".__("see screenshot", GOURLWC)."</a><br><br>"
+                    'description' 	=> '<img width="45" height="35" alt="new" src="https://gourl.io/images/new.png" style="float:left;margin:3px 8px"> '.sprintf(__("Your shop can display product prices in Bitcoin/BCH/Neutron/LTC/DOGE also.<br>Simple select 'Currency' - <a href='%s'>'Admin use USD/EUR/etc, users see Live Prices in Bitcoin/Altcoin'</a>", GOURLWC ), admin_url('admin.php?page=wc-settings&tab=general#woocommerce_currency'))."&#160; --> &#160; <a href='https://gourl.io/images/woocommerce/woocommerce-usd-btc.html' target='_blank'>".__("see screenshot", GOURLWC)."</a><br><br>"
                 ),
                     'ostatus' 		=> array(
                     'title' 		=> __('Order Status - Cryptocoin Payment Received', GOURLWC ),
@@ -999,7 +999,7 @@ if (!function_exists('gourl_wc_gateway_load') && !function_exists('gourl_wc_acti
             $btc = gourl_bitcoin_live_price ($arr["admin"]); // 1BTC bitcoin price  in USD/EUR/AUD/RUB/GBP/etc.
 
             if ($arr["user"] == "BTC") $live = $btc;
-            elseif (in_array($arr["user"], json_decode(GOURLWC_2WAY, true))) $live = $btc * gourl_altcoin_btc_price ($arr["user"]); // atcoins 1LTC/1DASH/1BCH/1DOGE  in USD/EUR/AUD/RUB/GBP/etc.
+            elseif (in_array($arr["user"], json_decode(GOURLWC_2WAY, true))) $live = $btc * gourl_altcoin_btc_price ($arr["user"]); // atcoins 1LTC/1Neutron/1BCH/1DOGE  in USD/EUR/AUD/RUB/GBP/etc.
 
             if ($live > 0)
             {
@@ -1013,7 +1013,7 @@ if (!function_exists('gourl_wc_gateway_load') && !function_exists('gourl_wc_acti
         {
             $btc = gourl_bitcoin_live_price ("USD"); // USD
             if ($arr["user"] == "BTC") $live = $btc;
-            else $live = $btc * gourl_altcoin_btc_price ($arr["user"]); // atcoins 1LTC/1DASH/1BCH/1DOGE  in USD
+            else $live = $btc * gourl_altcoin_btc_price ($arr["user"]); // atcoins 1LTC/1Neutron/1BCH/1DOGE  in USD
 
             $totalFiat = round(floatval($order_total) * floatval($live), 2);
 
@@ -1269,7 +1269,7 @@ if (!function_exists('gourl_wc_gateway_load') && !function_exists('gourl_wc_acti
 	    	    {
 	    	        $btc = gourl_bitcoin_live_price ("USD"); // USD
 	    	        if ($currencies["admin"] == "BTC") $live = $btc;
-	    	        else $live = $btc * gourl_altcoin_btc_price ($currencies["admin"]); // atcoins 1LTC/1DASH/1BCH/1DOGE  in USD
+	    	        else $live = $btc * gourl_altcoin_btc_price ($currencies["admin"]); // atcoins 1LTC/1Neutron/1BCH/1DOGE  in USD
 
 	    	        $v = round(floatval($payment_details["amountusd"]) / floatval($live), 5);
 

@@ -3,14 +3,14 @@ Contributors: gourl, GoUrl.io
 Plugin Name: GoUrl WooCommerce - Bitcoin Altcoin Payment Gateway Addon. White Label Solution
 Plugin URI: https://gourl.io/bitcoin-payments-woocommerce.html
 Author URI: https://gourl.io
-Tags: woocommerce, bitcoin, bitcoincash, bitcoin cash, bitcoins, gourl, cryptocurrency, btc, coinbase, bitpay, ecommerce, white label, paypal, accept bitcoin, shop, payment, payment gateway, litecoin, dogecoin, dash, speedcoin, vertcoin, reddcoin, feathercoin, potcoin, monetaryunit, peercoin
+Tags: woocommerce, bitcoin, bitcoincash, bitcoin cash, bitcoins, gourl, cryptocurrency, btc, coinbase, bitpay, ecommerce, white label, paypal, accept bitcoin, shop, payment, payment gateway, litecoin, dogecoin, NTRN, speedcoin, vertcoin, reddcoin, feathercoin, potcoin, monetaryunit, peercoin
 Requires at least: 3.5
 Tested up to: 4.9
 Stable Tag: 1.2.4
 License: GNU Version 2 or Any Later Version
 License URI: http://www.gnu.org/licenses/gpl-2.0.html  
 
-Provides Bitcoin/Altcoin Payment Gateway for WooCommerce 2.1+ or higher. White Label Product. Accept Bitcoin, Bitcoin Cash, Litecoin, Dash, Dogecoin, etc Payments on Your Website
+Provides Bitcoin/Altcoin Payment Gateway for WooCommerce 2.1+ or higher. White Label Product. Accept Bitcoin, Bitcoin Cash, Litecoin, Neutron, Dogecoin, etc Payments on Your Website
 
 
 
@@ -26,7 +26,7 @@ Bitcoin/Altcoin Plugin for WooCommerce Features -
 * Provides a Cryptocurrency Payment Gateway for [WooCommerce 2.1 or higher](https://wordpress.org/plugins/woocommerce/)
 * No Monthly Fee, No Bank Account Needed, Transaction Fee from 0%
 * No Chargebacks, Global, Secure. All in automatic mode.
-* Accept Bitcoin, BitcoinCash, Litecoin, Dash, Dogecoin, Speedcoin, Reddcoin, Potcoin, Feathercoin, Vertcoin, Peercoin, MonetaryUnit payments in WooCommerce
+* Accept Bitcoin, BitcoinCash, Litecoin, Neutron, Dogecoin, Speedcoin, Reddcoin, Potcoin, Feathercoin, Vertcoin, Peercoin, MonetaryUnit payments in WooCommerce
 * Mobile Friendly customizable Payment Box; Direct Integration on your website, no external payment pages opens (as other payment gateways offer)
 * White Label Solution with Your Logo ([see Demo](https://gourl.io/lib/examples/box_only.php)) - user browser receive payment data from your server/website only; your server receive data from our server. 
 * Support WooCommerce Subscriptions (subscriptions plugin on [Github](https://github.com/wp-premium/woocommerce-subscriptions))
@@ -67,7 +67,7 @@ You need to install also -
 
 = Automatic installation =
 
-Automatic installation is the easiest option as WordPress handles the file transfers itself and you don't need to leave your web browser. To do an automatic install of GoUrl Bitcoin/Altcoin Gateway for WooCommerce, log in to your WordPress dashboard, navigate to the Plugins menu and click Add New.
+Automatic installation is the easiest option as WordPress handles the file transfers itself and you don't need to leave your web browser. To do an automatic install of GoUrl Bitcoin/Altcoin Gateway for WooCommerce, log in to your WordPress NTRNboard, navigate to the Plugins menu and click Add New.
 
 In the search field type "GoUrl WooCommerce" and click Search Plugins. Once you've found our plugin you can view details about it such as the the rating and description. Most importantly, of course, you can install it by simply clicking Install Now.
 

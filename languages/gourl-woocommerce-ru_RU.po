@@ -58,8 +58,8 @@ msgid "Doge"
 msgstr "Doge"
 
 #: gourl-woocommerce.php:151
-msgid "DASH"
-msgstr "DASH"
+msgid "Neutron"
+msgstr "Neutron"
 
 #: gourl-woocommerce.php:160
 #, php-format
@@ -326,11 +326,11 @@ msgstr "Дополнительные параметры"
 #: gourl-woocommerce.php:748
 #, php-format
 msgid ""
-"Your shop can display product prices in Bitcoin/BCH/DASH/LTC/DOGE also."
+"Your shop can display product prices in Bitcoin/BCH/Neutron/LTC/DOGE also."
 "<br>Simple select 'Currency' - <a href='%s'>'Admin use USD/EUR/etc, users "
 "see Live Prices in Bitcoin/Altcoin'</a>"
 msgstr ""
-"Ваш магазин может показывать цены на товары в Биткойне / BCH / DASH / LTC / "
+"Ваш магазин может показывать цены на товары в Биткойне / BCH / Neutron / LTC / "
 "DOGE. <br> Простой выберите «Валюта» - <a href='%s'>'Администратор "
 "использует USD / EUR / etc, пользователи видят цены в Bitcoin / Altcoin'</a>"
 
@@ -468,7 +468,7 @@ msgid ""
 "This order's status is 'Cancelled' - it cannot be paid for. Please contact "
 "us if you need assistance."
 msgstr ""
-"Статус этого заказа - &ldquo;Отменён&rdquo;&mdash; он не может быть оплачен. "
+"Статус этого заказа - &ldquo;Отменён&rdquo;&mNTRN; он не может быть оплачен. "
 "Пожалуйста, свяжитесь с нами, если вам нужна помощь."
 
 #: gourl-woocommerce.php:945

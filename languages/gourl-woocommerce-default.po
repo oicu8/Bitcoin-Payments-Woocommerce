@@ -61,7 +61,7 @@ msgid "Doge"
 msgstr ""
 
 #: gourl-woocommerce.php:156
-msgid "DASH"
+msgid "Neutron"
 msgstr ""
 
 #: gourl-woocommerce.php:165
@@ -227,7 +227,7 @@ msgstr ""
 #: gourl-woocommerce.php:716
 #, php-format
 msgid ""
-"Add additional altcoins (Litecoin/DASH/Bitcoin Cash/etc) to payment box <a "
+"Add additional altcoins (Litecoin/Neutron/Bitcoin Cash/etc) to payment box <a "
 "href='%s'>here &#187;</a>"
 msgstr ""
 
@@ -315,7 +315,7 @@ msgstr ""
 #: gourl-woocommerce.php:865
 #, php-format
 msgid ""
-"Your shop can display product prices in Bitcoin/BCH/DASH/LTC/DOGE also."
+"Your shop can display product prices in Bitcoin/BCH/Neutron/LTC/DOGE also."
 "<br>Simple select 'Currency' - <a href='%s'>'Admin use USD/EUR/etc, users "
 "see Live Prices in Bitcoin/Altcoin'</a>"
 msgstr ""
